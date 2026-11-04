@@ -53,12 +53,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "anyhow"
-version = "1.0.100"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a23eb6b1614318a8071c9b2521f36b424b2c83db5eb3a0fead4a6c0809af6e61"
-
-[[package]]
 name = "bincode"
 version = "1.3.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -126,14 +120,37 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a6cb138bb79a146c1bd460005623e142ef0181e3d0219cb493e02f7d08a35695"
 
 [[package]]
-name = "moonfs"
+name = "moonfs-chunkserver"
+version = "0.1.0"
+
+[[package]]
+name = "moonfs-cli"
 version = "0.1.0"
 dependencies = [
- "anyhow",
- "bincode",
  "clap",
+ "moonfs-protocol",
+ "moonfs-server",
+]
+
+[[package]]
+name = "moonfs-client"
+version = "0.1.0"
+
+[[package]]
+name = "moonfs-master"
+version = "0.1.0"
+
+[[package]]
+name = "moonfs-protocol"
+version = "0.1.0"
+dependencies = [
+ "bincode",
  "serde",
 ]
+
+[[package]]
+name = "moonfs-server"
+version = "0.1.0"
 
 [[package]]
 name = "once_cell_polyfill"

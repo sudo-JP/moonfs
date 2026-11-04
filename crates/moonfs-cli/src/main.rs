@@ -1,8 +1,8 @@
 use clap::Parser;
-use moonfs::cli::{CLI};
+use moonfs_cli::cli::CLI;
 
 fn main() {
-    let cli = CLI::parse();
+    let _cli = CLI::parse();
 
     // TODO: extract the path from cli, throw error if path doesn't exist
 }
