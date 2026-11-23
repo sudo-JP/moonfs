@@ -5,9 +5,17 @@ enum NamespaceNode {
     File(Vec<[usize; 3]>),
 }
 
+impl Default for NamespaceNode {
+    fn default() -> Self {
+        NamespaceNode::Directory(HashMap::default())
+    }
+}
+
+#[derive(Default)]
 pub struct Master {
     namespace_node: NamespaceNode,
     chunkservers_addr: Vec<IpAddr>,
+    current_chunk: usize,
 }
 
 pub enum MasterOperationError {
@@ -18,9 +26,21 @@ pub enum MasterOperationError {
 impl Master {
     pub fn new(chunkservers_addr: Vec<IpAddr>) -> Self {
         Self {
-            namespace_node: NamespaceNode::Directory(HashMap::default()),
+            namespace_node: NamespaceNode::default(),
             chunkservers_addr,
+            current_chunk: 0,
         } 
+    }
+
+    pub fn add_chunkserver(&mut self, chunkserver_addr: IpAddr) -> usize {
+        self.chunkservers_addr.push(chunkserver_addr);
+        self.chunkservers_addr.len() - 1
+    }
+
+    fn round_robin_next(&mut self) -> usize {
+        let idx = self.current_chunk;
+        self.current_chunk = (idx + 1) % self.chunkservers_addr.len();
+        idx
     }
 
     pub fn run(&mut self) -> ! {
