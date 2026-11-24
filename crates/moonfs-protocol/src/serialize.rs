@@ -1,5 +1,4 @@
 use serde::{Deserialize, Serialize};
-
 pub enum SerializeErr {
     Corrupted,
     // TODO: add more error if needed
