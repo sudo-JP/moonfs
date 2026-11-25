@@ -1,0 +1,9 @@
+
+enum ChunkserverRequest {
+
+}
+
+enum ChunkserverResponse {
+
+}
+
